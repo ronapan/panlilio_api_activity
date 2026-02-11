@@ -21,3 +21,11 @@ Markdown
 **4. Testing:**
  - (Paste a screenshot of a successful GET request here)
  ![Successful GET request](screenshot.png)
+
+
+ Hands-on Activity #3: Advanced Data Modeling
+ - "Why did I choose to Embed the [Review/Tag/Log]?"
+    - A review is conceptually like an item in a backpack; it always belongs to the parent dish and has no use being stored alone. Storing them inside the Dish document makes it faster to load everything at once without searching through a separate "Reviews" collection.
+
+- "Why did I choose to Reference the [Chef/User/Guest]?"
+    - A Chef exists as a separate entity. They still exist in our database even if they aren't currently cooking a specific dish. Multiple dishes can share the same Chef. By using a reference, I don't have to copy the Chef's name into every single dish. If the Chef's specialty changes, I only update it once in the Chef model.

@@ -9,17 +9,31 @@ const dishSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
+        min:[0, 'Price canot be negative'],
+        max:[1000, 'Price cannot be more than 1000'],
     },
     category: {
         type: String,
 
         enum:['Starter', 'Main', 'Dessert', 'drinks'],
         required: true,
+        message:'{VALUE} is not a valid category',
     },
     isVegetarian: {
         type: Boolean,
         default: false,
     },
+    reviews: [
+        {
+            user: String,
+            rating: {type: Number, min: 1, max: 5},
+            comment: String,
+        }
+    ],
+    chef:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chef',
+    }
 });
 
 module.exports = mongoose.model('Dish', dishSchema);

@@ -8,6 +8,7 @@ const {
     getDishById, 
     updateDish,
     deleteDish,
+    createChef,
 } = require ('../controllers/dishController')
 
 //1. if user goes to GET / (show menu). ask chef to getAllDishes
@@ -24,5 +25,8 @@ router.put('/dishes/:id', updateDish);
 
 //5. if user send DELETE /:id (Cancel meal). ask chef to deleteDish
 router.delete('/dishes/:id', deleteDish);
+
+//6. Create a new chef
+router.post('/chefs', createChef);
 
 module.exports = router;

@@ -25,11 +25,16 @@ const createDish = async (req, res) => {
 //3.GET ONE:Find a specific food by ID
 const getDishById = async (req, res) => {
     try {
-        const dish = await Dish.findById(req.params.id);  //.findById() means "Get One by ID"
+        
+        const dish = await Dish.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,          
+            runValidators: true 
+        });
+        
         if (!dish) return res.status(404).json({ message: 'Dish not found' });
         res.status(200).json(dish);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -37,7 +42,7 @@ const getDishById = async (req, res) => {
 const updateDish = async (req, res) => {
     try {
         const dish = await Dish.findByIdAndUpdate(req.id, req.body, {
-            new: true,
+            new: true, runValidators: true,
         });
         if (!dish) return res.status(404).json({ message: 'Dish not found' });
         res.status(200).json(dish);
@@ -57,10 +62,21 @@ const deleteDish = async (req, res) => {
     }
 };
 
+const createChef = async (req, res) => {
+    try {
+        const Chef = require('../models/chefModel');
+        const newChef = await Chef.create(req.body);
+        res.status(201).json(newChef);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 module.exports = {
     getAllDishes,
     createDish,
     getDishById,
     updateDish,
     deleteDish,
+    createChef,
 };

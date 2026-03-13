@@ -39,17 +39,17 @@ Markdown
 
 ## Hands-on Activity #4: Securing the API
 **1. Authentication vs Authorization:**
-    What is the difference between Authentication and Authorization in our code?
-    Answer:
-     - Authentication is the process of verifying the identity of a user, such as logging in with an email and password. Authorization is the process of checking what actions the user is allowed to perform, like whether a role can access, create, update, or delete data. Authentication occurs first, and then authorization ensures the user has permission for the requested action.
+What is the difference between Authentication and Authorization in our code?
+- Answer:
+    - Authentication is the process of verifying the identity of a user, such as logging in with an email and password. Authorization is the process of checking what actions the user is allowed to perform, like whether a role can access, create, update, or delete data. Authentication occurs first, and then authorization ensures the user has permission for the requested action.
 
 **2. Security (bcrypt):**
-    Why did we use bcryptjs instead of saving passwords as plain text in MongoDB?
-    Answer: 
+Why did we use bcryptjs instead of saving passwords as plain text in MongoDB?
+- Answer: 
      - We use bcryptjs to hash passwords so that plain text passwords are never stored in the database. This keeps user passwords safe if the database is hacked.
 
 **3. JWT Structure:**
-    What does the protect middleware do when it receives a JWT from the client?
-    Answer: 
+What does the protect middleware do when it receives a JWT from the client?
+- Answer: 
      - The protect middleware takes the JWT token from the user, checks if it’s valid, and then allows access to the route if the token is correct. It also attaches 
     the user info to the request so the route knows who is making the request.

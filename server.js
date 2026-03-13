@@ -17,7 +17,9 @@ const BASE_URI = process.env.BASE_URI || '/api/v1';
 
 //Import Routes (We will create this later)
 const apiRoutes = require('./src/routes/apiRoutes');
+const authRoutes = require('./src/routes/authRoutes')
 app.use(process.env.BASE_URI, apiRoutes);
+app.use(process.env.BASE_URI, authRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
